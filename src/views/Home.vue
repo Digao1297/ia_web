@@ -1,16 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <hello msg="Welcome to Your Vue.js App"/>
+    <form />
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'Home',
+  name: "home",
   components: {
-    hello: () => import(/* webpackChunkName: "hello" */ '@/components/hello.vue')
-  }
-}
+    form: () => import(/* webpackChunkName: "hello" */ "@/components/form.vue"),
+  },
+};
 </script>
