@@ -13,9 +13,12 @@
           href="https://github.com/bed72/ia_web.git"
           class="btn btn-link"
           target="_blank"
-          >GitHub</a
-        >
+          >GitHub <i class="icon icon-emoji"
+        /></a>
       </div>
+      <a href="/" class="btn btn-link" target="_blank"
+        >Docs <i class="icon icon-flag"
+      /></a>
     </section>
   </header>
   <body>

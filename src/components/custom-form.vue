@@ -56,7 +56,9 @@
           v-model="form.unavailable"
           name="input-available"
         >
-          <option class="h6">Choose an option</option>
+          <option class="h6" value="0" selected disabled>
+            Choose an option
+          </option>
           <option
             class="h6"
             v-for="choose in chooseUnavailable"
@@ -71,23 +73,25 @@
     <button class="btn btn-success" type="submit" form="custom-form">
       Register
     </button>
-    <button class="btn btn-error">Clear fields</button>
+    <button class="btn btn-error" @click.prevent="_clear">Clear fields</button>
+    <customtoast v-if="errors.length" errors="Please correct the errors!" />
   </form>
 </template>
 
 <script>
+import customtoast from "./custom-toast";
 export default {
   name: "custom-form",
   data: () => ({
     errors: [],
     chooseUnavailable: [
-      { id: 0, name: "Mon" },
-      { id: 1, name: "Tue" },
-      { id: 2, name: "Wed" },
-      { id: 3, name: "The" },
-      { id: 4, name: "Fri" },
-      { id: 5, name: "Wed|Fri" },
-      { id: 6, name: "The|Fri" },
+      { id: 1, name: "Mon" },
+      { id: 2, name: "Tue" },
+      { id: 3, name: "Wed" },
+      { id: 4, name: "The" },
+      { id: 5, name: "Fri" },
+      { id: 6, name: "Wed|Fri" },
+      { id: 7, name: "The|Fri" },
     ],
     form: {
       workload: 2,
@@ -102,6 +106,9 @@ export default {
       ],
     },
   }),
+  components: {
+    customtoast,
+  },
   methods: {
     _checkForm() {
       if (this.nameDiscipline && this.nameTeacher && this.unavailable)
@@ -116,6 +123,17 @@ export default {
 
       if (!this.unavailable)
         this.errors.push("Choose from the menus an unavailable day.");
+
+      if (!this.errors.length) {
+        this._clear();
+      }
+    },
+
+    _clear() {
+      this.form.workload = 2;
+      this.form.unavailable = [];
+      this.form.nameTeacher = "";
+      this.form.nameDiscipline = "";
     },
   },
 };
