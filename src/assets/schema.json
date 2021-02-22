@@ -1,0 +1,14 @@
+{
+  "discipline": {
+    "name": "Linguagens e Paradigmas de Programação",
+    "workload": 4,
+    "teacher": {
+      "name": "Wilson Castello Branco Neto",
+      "unavailable": [
+        "seg",
+        "qua",
+        "qui"
+      ]
+    }
+  }
+}

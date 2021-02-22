@@ -2,10 +2,10 @@
   <header class="navbar">
     <section class="navbar-section">
       <a href="/" class="navbar-brand mr-2 text-bold"
-        >Inteligência Artificial
+        >Artificial intelligence
       </a>
       <router-link to="/" class="btn btn-link">Home</router-link>
-      <router-link to="/add" class="btn btn-link">Add</router-link>
+      <router-link to="/result" class="btn btn-link">Result</router-link>
     </section>
     <section class="navbar-section">
       <div class="input-group input-inline">
