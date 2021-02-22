@@ -36,14 +36,14 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: white;
   color: black;
-  text-align: center;
   font-weight: 500;
+  text-align: center;
+  background-color: white;
 }
 
 strong {
-  color: rgb(218, 49, 49);
   font-size: 16px;
+  color: rgb(218, 49, 49);
 }
 </style>
