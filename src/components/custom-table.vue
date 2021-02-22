@@ -3,8 +3,8 @@
     <thead>
       <tr>
         <th>Discipline <i class="icon icon-message" /></th>
-        <th>Workload <i class="icon icon-time" /></th>
         <th>Teacher <i class="icon icon-people" /></th>
+        <th>Workload <i class="icon icon-time" /></th>
       </tr>
     </thead>
     <tbody>
