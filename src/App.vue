@@ -18,11 +18,32 @@
       </div>
     </section>
   </header>
-  <router-view />
+  <body>
+    <router-view />
+  </body>
+  <footer>
+    <div class="text-center">Done with <strong>♥</strong></div>
+  </footer>
 </template>
 
 <style scoped>
 header {
   padding: 0.5rem;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+}
+
+strong {
+  color: rgb(218, 49, 49);
+  font-size: 16px;
 }
 </style>

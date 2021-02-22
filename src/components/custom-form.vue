@@ -1,8 +1,10 @@
 <template>
   <form class="custom-form" action="#forms">
     <fieldset>
-      <div class="form-group">
-        <label class="form-label" for="input-discipline">Course name</label>
+      <div class="form-group h6">
+        <label class="form-label" for="input-discipline"
+          ><i class="icon icon-message" /> Course name</label
+        >
         <input
           class="form-input"
           type="text"
@@ -12,7 +14,9 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="input-workload">Workload</label>
+        <label class="form-label h6" for="input-workload"
+          ><i class="icon icon-time" /> Workload</label
+        >
         <select class="form-select">
           <option>Choose an option</option>
           <option>2</option>
@@ -23,7 +27,9 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="input-name">Teacher's name</label>
+        <label class="form-label h6" for="input-name"
+          ><i class="icon icon-people" /> Teacher's name</label
+        >
         <input
           class="form-input"
           type="text"
@@ -33,14 +39,14 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="input-available"
-          >Days of the week available</label
+        <label class="form-label h6" for="input-available"
+          ><i class="icon icon-search" /> Days of the week available</label
         >
         <select class="form-select">
           <option>Choose an option</option>
           <option>Mon</option>
           <option>Tue</option>
-          <option>Wen</option>
+          <option>Wed</option>
           <option>The</option>
           <option>Fri</option>
         </select>
@@ -60,6 +66,10 @@ export default {
 <style scoped>
 .btn-error {
   margin: 0 0 0 2%;
+}
+
+.icon {
+  margin: 0 0 1% 0;
 }
 </style>
 
