@@ -4,12 +4,14 @@
       <customform class="custom-form" />
     </div>
     <div class="column col-8">
-      <customtable class="custom-table" />
+      <customtable class="custom-table" :schedules="_actionGetAllSchedules()" />
     </div>
   </div>
 </template>
 
 <script>
+import { onMounted } from "vue";
+import { mapActions } from "vuex";
 import customform from "@/components/custom-form";
 import customtable from "@/components/custom-table";
 
@@ -18,6 +20,14 @@ export default {
   components: {
     customform,
     customtable,
+  },
+  methods: {
+    ...mapActions({
+      _actionGetAllSchedules: "schadules/actionGetAllSchedules",
+    }),
+  },
+  mounted() {
+    this._actionGetAllSchedules();
   },
 };
 </script>

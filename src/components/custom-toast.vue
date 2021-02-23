@@ -1,6 +1,6 @@
 <template>
-  <div class="toast" :errors="errors">
-    {{ error }}
+  <div class="toast">
+    {{ errors }}
   </div>
 </template>
 

@@ -14,7 +14,7 @@
 
 <strong>Links:</strong> <span>&#128072;&#127998;</span><br/>
 <strong>(BACK-END):</strong> https://github.com/bed72/ia_prova<br/>
-<strong>(FastAPI):</strong> https://nodejs.org/en/<br/>
+<strong>(Node):</strong> https://nodejs.org/en/<br/>
 <strong>(MongoDB):</strong> https://github.com/axios/axios<br/>
 
 ## :factory: Instalando Dependências: <br/>

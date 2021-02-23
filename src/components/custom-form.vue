@@ -11,7 +11,7 @@
           class="form-input"
           :rules="rules.other"
           name="input-discipline"
-          v-model="form.nameDiscipline"
+          v-model="form.name"
           placeholder="Ex: Linguagens e Paradigmas de Programação"
         />
       </div>
@@ -23,6 +23,7 @@
         <input
           min="2"
           max="8"
+          step="2"
           required
           type="number"
           class="form-input"
@@ -42,7 +43,7 @@
           name="input-name"
           class="form-input"
           :rules="rules.other"
-          v-model="form.nameTeacher"
+          v-model="form.teacher.name"
           placeholder="Ex: Wilson Castello Branco Neto"
         />
       </div>
@@ -51,53 +52,54 @@
         <label class="form-label h6" for="input-available"
           ><i class="icon icon-search" /> Days unavailable</label
         >
-        <select
-          class="form-select"
-          v-model="form.unavailable"
-          name="input-available"
-        >
-          <option class="h6" value="0" selected disabled>
-            Choose an option
-          </option>
-          <option
-            class="h6"
+        <div class="form-group">
+          <label
+            class="form-checkbox form-inline h6 mx-2"
             v-for="choose in chooseUnavailable"
-            :key="choose.icon"
-            :value="{ id: choose.id, text: choose.name }"
+            :key="choose.id"
           >
-            {{ choose.name }}
-          </option>
-        </select>
+            <input
+              type="checkbox"
+              :value="choose.name"
+              v-model="form.teacher.unavailable"
+            /><i class="form-icon"></i> {{ choose.name }}
+          </label>
+        </div>
       </div>
     </fieldset>
     <button class="btn btn-success" type="submit" form="custom-form">
       Register
     </button>
     <button class="btn btn-error" @click.prevent="_clear">Clear fields</button>
-    <customtoast v-if="errors.length" errors="Please correct the errors!" />
+    <customtoast
+      class="toast"
+      v-if="errors.length > 0"
+      errors="Please correct the errors!"
+    />
   </form>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import customtoast from "./custom-toast";
 export default {
   name: "custom-form",
   data: () => ({
     errors: [],
     chooseUnavailable: [
-      { id: 1, name: "Mon" },
-      { id: 2, name: "Tue" },
-      { id: 3, name: "Wed" },
-      { id: 4, name: "The" },
-      { id: 5, name: "Fri" },
-      { id: 6, name: "Wed|Fri" },
-      { id: 7, name: "The|Fri" },
+      { id: 0, name: "Monday" },
+      { id: 1, name: "Tuesday" },
+      { id: 2, name: "Wednesday" },
+      { id: 3, name: "Thursday" },
+      { id: 4, name: "Friday" },
     ],
     form: {
+      name: "",
       workload: 2,
-      unavailable: [],
-      nameTeacher: null,
-      nameDiscipline: null,
+      teacher: {
+        name: "",
+        unavailable: [],
+      },
     },
     rules: {
       other: [
@@ -109,31 +111,34 @@ export default {
   components: {
     customtoast,
   },
-  methods: {
-    _checkForm() {
-      if (this.nameDiscipline && this.nameTeacher && this.unavailable)
-        return true;
 
+  methods: {
+    ...mapActions({
+      _actionCreateSchedules: "schadules/actionCreateSchedules",
+    }),
+    async _checkForm() {
       this.errors = [];
 
-      if (!this.nameDiscipline)
+      if (this.form.name == null)
         this.errors.push("The name of the course is mandatory.");
 
-      if (!this.nameTeacher) this.errors.push("Teacher's name is required.");
+      if (this.form.teacher.name == null)
+        this.errors.push("Teacher's name is required.");
 
-      if (!this.unavailable)
+      if (this.form.teacher.unavailable.length == 0)
         this.errors.push("Choose from the menus an unavailable day.");
 
-      if (!this.errors.length) {
+      if (this.errors.length == 0) {
+        await this._actionCreateSchedules(this.form);
         this._clear();
       }
     },
 
     _clear() {
+      this.form.name = "";
       this.form.workload = 2;
-      this.form.unavailable = [];
-      this.form.nameTeacher = "";
-      this.form.nameDiscipline = "";
+      this.form.teacher.name = "";
+      this.form.teacher.unavailable = [];
     },
   },
 };
@@ -146,6 +151,10 @@ export default {
 
 .icon {
   margin: 0 0 1% 0;
+}
+
+.toast {
+  margin: 32px 0 0 0;
 }
 </style>
 

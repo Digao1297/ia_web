@@ -1,55 +1,24 @@
 import * as types from './mutations.types'
-import { get, getAll, post, edit, deleter } from '../../../api'
+import { getAll, post, deleter } from '../../../api'
 
-export const actionGetAllSchedules = async ({ dispatch }, payload) => await getAll('/')
-
-export const actionGetSchedules = async ({ dispatch }, payload) =>
-  await get('/', payload.id)
-
-export const actionCreateSchedules = async ({ dispatch }, payload) => {
-  const teacher = {
-    name: payload.name,
-    unavailable: payload.unavailable
-  }
-
-  const discipline = {
-    name: payload.name,
-    workload: payload.workload === null ? 2 : payload.workload,
-    teacher: teacher
-  }
-
-  await post('/', discipline)
+export const actionGetAllSchedules = ({ dispatch }) => {
+  getAll('/')
+    .then((response) => dispatch('actionSchedules', response.data.disciplines))
+    .catch((error) => console.log(error))
 }
 
-export const actionUpdateSchedules = async ({ dispatch }, payload) => {
-  const teacher = {
-    name: payload.name,
-    unavailable: payload.unavailable
-  }
+export const actionCreateSchedules = ({ dispatch }, payload) =>
+  post('/', { discipline: payload })
+    .then((response) => dispatch('actionGetAllSchedules'))
+    .catch((error) => console.log(error))
 
-  const discipline = {
-    name: payload.name,
-    workload: payload.workload === null ? 2 : payload.workload,
-    teacher: teacher
-  }
-
-  await edit('/', payload.id, discipline)
+export const actionDeleteSchedules = ({ dispatch }, payload) => {
+  deleter(payload)
+    .then(() =>
+      dispatch('actionGetAllSchedules')
+    )
+    .catch((error) => error)
 }
 
-export const actionDeleteSchedules = async ({ dispatch }, payload) =>
-  await deleter('/', payload.id)
-
-export const actionSchedules = async ({ commit }, payload) =>
+export const actionSchedules = ({ commit }, payload) =>
   commit(types.SET_SCHEDULES, payload)
-
-export const actionWorkload = async ({ commit }, payload) =>
-  commit(types.SET_WORKLOAD, payload)
-
-export const actionNameDiscipline = async ({ commit }, payload) =>
-  commit(types.SET_NAME_DISCIPLINE, payload)
-
-export const actionNameTeacher = async ({ commit }, payload) =>
-  commit(types.SET_NAME_TEACHER, payload)
-
-export const actionUnavailable = async ({ commit }, payload) =>
-  commit(types.SET_UNAVAILABLE, payload)
