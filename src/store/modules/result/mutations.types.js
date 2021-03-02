@@ -1,0 +1,1 @@
+export const SET_RESULT = "RESULT/SET_RESULT";

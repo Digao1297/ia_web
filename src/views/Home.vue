@@ -19,16 +19,16 @@ export default {
   name: "home",
   components: {
     customform,
-    customtable,
+    customtable
   },
   methods: {
     ...mapActions({
-      _actionGetAllSchedules: "schadules/actionGetAllSchedules",
-    }),
+      _actionGetAllSchedules: "schadules/actionGetAllSchedules"
+    })
   },
   mounted() {
     this._actionGetAllSchedules();
-  },
+  }
 };
 </script>
 

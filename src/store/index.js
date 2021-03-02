@@ -1,9 +1,11 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 /** Modules */
-import schadules from './modules/schedules'
+import schadules from "./modules/schedules";
+import result from "./modules/result";
 
 export default createStore({
   modules: {
-    schadules
+    schadules,
+    result
   }
-})
+});
